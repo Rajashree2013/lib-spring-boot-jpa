@@ -1,10 +1,11 @@
-package se.lexcicon.rajashree.model;
+package se.lexcicon.rajashree.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class Details {
+
 
     @Id // primary key for id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // means auto_increment
@@ -19,6 +20,25 @@ public class Details {
     @Column(nullable = false)
     LocalDate birthDate;
 
+    //default constructor
+    public Details() {
+    }
+
+    //paramatrized construtor without Id
+
+    public Details(String email, String name, LocalDate birthDate) {
+        this.email = email;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+   //  //paramatrized construtor with Id
+   public Details(int detailId, String email, String name, LocalDate birthDate) {
+       this.detailId = detailId;
+       this.email = email;
+       this.name = name;
+       this.birthDate = birthDate;
+
+   }
 
     public int getDetailId() {
         return detailId;
@@ -53,13 +73,7 @@ public class Details {
 
     }
 
-    public Details(int detailId, String email, String name, LocalDate birthDate) {
-        this.detailId = detailId;
-        this.email = email;
-        this.name = name;
-        this.birthDate = birthDate;
 
-    }
 
     @Override
     public String toString() {
