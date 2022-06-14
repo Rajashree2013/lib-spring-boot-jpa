@@ -22,13 +22,14 @@ public class AppUserDaoImp implements AppUserDao{
 
     @Override
     public List<AppUser> findAll() {
+
         return entityManager.createQuery("Select a from AppUser a").getResultList();
     }
 
     @Override
     public AppUser create(AppUser appUser) {
         entityManager.persist(appUser);
-        return null;
+        return appUser;
     }
 
     @Override
