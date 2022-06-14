@@ -9,13 +9,12 @@ import java.util.Optional;
 public interface DetailsDao {
 
     Optional<Details> findById(int id);
+
     List<Details> findAll();
-    Details create (Details details);
+
+    Details create(Details details);
+
     Details update(Details details);
-    void detete (int id);
 
-
-
-
-
+    void detete(int id);
 }

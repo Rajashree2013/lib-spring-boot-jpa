@@ -9,14 +9,12 @@ public interface AppUserDao {
 
     Optional<AppUser> findById(int id);
 
-    List <AppUser> findAll();
-   AppUser create (AppUser appUser);
-   AppUser update(AppUser appUser);
-   void detete (int id);
+    List<AppUser> findAll();
 
+    AppUser create(AppUser appUser);
 
+    AppUser update(AppUser appUser);
 
-
-
+    void detete(int id);
 
 }
