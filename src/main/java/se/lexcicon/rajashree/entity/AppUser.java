@@ -7,8 +7,7 @@ import java.util.Objects;
 @Entity
 public class AppUser {
 
-    // todo: check the naming conventions - follow the entity instruction in the material
-    // todo: define primary key with auto_increment for id field
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Column(updatable = false)
