@@ -2,6 +2,8 @@ package se.lexcicon.rajashree.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +28,12 @@ public class AppUser {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name = "userDetails_detailId", referencedColumnName = "detailId")
     private Details userDetails;
+
+
+
+    @OneToMany(mappedBy = "borrower", fetch = FetchType.LAZY)
+    private List<BookLoan> loans;
+
     //default constructor
     public AppUser() {
     }
@@ -97,6 +105,31 @@ public class AppUser {
     public void setUserDetails(Details userDetails) {
         this.userDetails = userDetails;
     }
+
+    public List<BookLoan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<BookLoan> loans) {
+        this.loans = loans;
+    }
+
+    public void loanBook(BookLoan bookLoan) {
+        if (bookLoan == null) throw new IllegalArgumentException("bookLoan data is null");
+        if (loans == null) loans = new ArrayList<>();
+        loans.add(bookLoan);
+        bookLoan.setBorrower(this);
+    }
+
+    public void returnBook(BookLoan bookLoan) {
+        if (bookLoan == null) throw new IllegalArgumentException("bookLoan data is null");
+        if (loans != null) {
+            bookLoan.setBook(null);
+            loans.remove(bookLoan);
+        }
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
