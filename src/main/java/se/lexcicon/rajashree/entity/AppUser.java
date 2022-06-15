@@ -24,7 +24,7 @@ public class AppUser {
     private LocalDate regDate;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
-    @JoinColumn(name = "appuserid", referencedColumnName = "detailId")
+    @JoinColumn(name = "userDetails_detailId", referencedColumnName = "detailId")
     private Details userDetails;
     //default constructor
     public AppUser() {
