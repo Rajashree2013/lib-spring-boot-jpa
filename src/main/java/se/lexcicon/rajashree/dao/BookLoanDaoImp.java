@@ -1,5 +1,6 @@
 package se.lexcicon.rajashree.dao;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import se.lexcicon.rajashree.entity.Book;
 import se.lexcicon.rajashree.entity.BookLoan;
@@ -8,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public class BookLoanDaoImp implements BookLoanDao{
     @PersistenceContext
     private EntityManager entityManager;
