@@ -28,9 +28,6 @@ public class AppUser {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name = "userDetails_detailId", referencedColumnName = "detailId")
     private Details userDetails;
-
-
-
     @OneToMany(mappedBy = "borrower", fetch = FetchType.LAZY)
     private List<BookLoan> loans;
 
@@ -121,16 +118,13 @@ public class AppUser {
         bookLoan.setBorrower(this);
     }
 
-    public void returnBook(BookLoan bookLoan) {
+    public void removeBook(BookLoan bookLoan) {
         if (bookLoan == null) throw new IllegalArgumentException("bookLoan data is null");
         if (loans != null) {
             bookLoan.setBook(null);
             loans.remove(bookLoan);
         }
     }
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
