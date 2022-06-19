@@ -2,6 +2,8 @@ package se.lexcicon.rajashree.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 public class Book {
 @Id
@@ -14,8 +16,25 @@ private String isbn;
 @Column(nullable = false,length =100 )
 private  String title;
 
-@Column(nullable = false,length = 100)
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
+    @Column(nullable = false,length = 100)
 private int maxLoanDays;
+
+    @ManyToMany
+    @JoinTable(name = "Authors",
+            joinColumns = @JoinColumn(name = "authorId"),
+            inverseJoinColumns = @JoinColumn(name = "bookId")
+    )
+    private Set<Author> authors;
+
+
 
     public Book() {
     }
